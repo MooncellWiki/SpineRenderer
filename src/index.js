@@ -54,6 +54,7 @@ export function render(
       y,
       fitToCanvas,
       success: onSuccess,
+      premultipliedAlpha: true,
     });
   });
 }
