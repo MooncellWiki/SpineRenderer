@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>amiya</title>
+    <script src="../dist/SpineRenderer.b733edc5.chunk.js"></script>
+  </head>
+  <body>
+    <div
+      id="container"
+      style="
+        width: 1000px;
+        height: 1000px;
+        transform: scale(0.3, 0.3);
+        transform-origin: left top;
+      "
+    ></div>
+    <script>
+      SpineRender.render(document.getElementById("container"), {
+        atlasPath: "./spine/char_002_amiya.atlas",
+        skelPath: "./spine/char_002_amiya.skel",
+        ani: "Attack",
+        backgroundColor: "#00000000",
+        loop: true,
+        skin: "default",
+        debug: false,
+        x: 500,
+        y: 200,
+        fitToCanvas: false,
+        onSuccess: (widget) => {
+          console.log(widget);
+        },
+      });
+    </script>
+  </body>
+</html>
