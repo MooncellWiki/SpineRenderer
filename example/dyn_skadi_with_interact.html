@@ -19,6 +19,7 @@
     ></div>
     <script>
       let container = document.getElementById("container");
+      let isPlayingInteract = false;
       SpineRender.render(container, {
         atlasPath: "./spine/dyn_illust_char_1012_skadi2.atlas",
         skelPath: "./spine/dyn_illust_char_1012_skadi2.skel",
@@ -37,7 +38,18 @@
         fitToCanvas: false,
         onSuccess: (widget) => {
           console.log(widget);
+          widget.state.addListener({
+            end: (e) => {
+              if (e.animation.name == "Interact") {
+                isPlayingInteract = false;
+              }
+            },
+          });
           container.addEventListener("click", () => {
+            if (isPlayingInteract) {
+              return;
+            }
+            isPlayingInteract = true;
             let entry = widget.state.setAnimation(0, "Interact", false, 0);
             entry.mixDuration = 0.2;
             console.log(entry);
