@@ -18,7 +18,8 @@
       "
     ></div>
     <script>
-      SpineRender.render(document.getElementById("container"), {
+      let container = document.getElementById("container");
+      SpineRender.render(container, {
         atlasPath: "./spine/dyn_illust_char_1012_skadi2.atlas",
         skelPath: "./spine/dyn_illust_char_1012_skadi2.skel",
         atlasPages: [
@@ -36,6 +37,12 @@
         fitToCanvas: false,
         onSuccess: (widget) => {
           console.log(widget);
+          container.addEventListener("click", () => {
+            let entry = widget.state.setAnimation(0, "Interact", false, 0);
+            entry.mixDuration = 0.2;
+            console.log(entry);
+            widget.state.addAnimation(0, "Idle", true, 0);
+          });
         },
         onSkelLoaded: (skel) => {
           console.log(skel);
