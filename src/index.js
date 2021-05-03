@@ -25,31 +25,38 @@ export function render(
   dom,
   {
     atlasPath,
+    atlasPages,
     skelPath,
     ani,
     backgroundColor = "#ffffff",
     debug = false,
     loop = true,
     skin,
+    scale,
     x = 500,
     y = 200,
     fitToCanvas = false,
     onSuccess,
+    onSkelLoaded,
   }
 ) {
   loadSkel(skelPath).then(function (json) {
+    if (onSkelLoaded) {
+      onSkelLoaded(json);
+    }
     if (debug) {
       console.log(json);
     }
-    console.log(spine.SpineWidget.prototype);
     new spine.SpineWidget(dom, {
       jsonContent: json,
       atlas: atlasPath,
+      atlasPages,
       animation: ani,
       backgroundColor,
       debug,
       loop,
       skin,
+      scale,
       x,
       y,
       fitToCanvas,
